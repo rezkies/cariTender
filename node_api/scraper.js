@@ -97,6 +97,7 @@ async function getInformation(idData, mode, referer) {
 			if (mode === 'tender') {
 				return {
 					id: idData,
+					tipePengadaan: mode,
 					kodeTender: getValueByHeader(doc, "Kode Tender"),
 					tahunAnggaran: getValueByHeader(doc, "Tahun Anggaran"),
 					metodePengadaan: getValueByHeader(doc, "Metode Pengadaan"),
@@ -106,6 +107,7 @@ async function getInformation(idData, mode, referer) {
 			} else if (mode === 'non-tender') {
 				return {
 					id: idData,
+					tipePengadaan: mode,
 					kodeTender: getValueByHeader(doc, "Kode Paket"),
 					tahunAnggaran: getValueByHeader(doc, "Tahun Anggaran"),
 					metodePengadaan: getValueByHeader(doc, "Metode Pengadaan"),
@@ -115,7 +117,8 @@ async function getInformation(idData, mode, referer) {
 			} else {
 				return {
 					id: idData,
-					nama: getValueByHeader(doc, "Kode Paket"),
+					tipePengadaan: mode,
+					kodeTender: getValueByHeader(doc, "Kode Paket"),
 					tahunAnggaran: getValueByHeader(doc, "Tahun Anggaran"),
 					metodePengadaan: getValueByHeader(doc, "Metode Pengadaan"),
 					jenisPengadaan: getValueByHeader(doc, "Jenis Pengadaan")
@@ -221,6 +224,7 @@ async function getPemenang(idData, mode) {
 								const penyediaCells = penyediaRow ? penyediaRow.cells : [];
 
 								penyedia = {
+									id: idData,
 									namaPenyedia: penyediaCells[1]?.textContent.trim() || '',
 									npwp: penyediaCells[2]?.textContent.trim() || '',
 									email: penyediaCells[3]?.textContent.trim() || '',
