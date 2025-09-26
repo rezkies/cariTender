@@ -1,5 +1,6 @@
 // scraper.js
 import { JSDOM } from 'jsdom';
+import fetch from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -348,3 +349,4 @@ export async function run(companyName, save = false) {
 
   return mergedResults;
 }
+
